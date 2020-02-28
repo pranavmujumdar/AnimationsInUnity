@@ -19,8 +19,16 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
         if (Input.GetButtonDown("Jump"))
         {
-            jump = true;
-            animator.SetBool("isJumping", true);
+            if (isDisguised)
+            {
+                jump = true;
+                animator.SetTrigger("jump");
+            }
+            else
+            {
+                jump = true;
+                animator.SetBool("isJumping", true);
+            }
         }
         if (Input.GetButtonDown("Crouch"))
         {
@@ -38,21 +46,43 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isSmoking", false);
         }
-        if (Input.GetKeyDown(KeyCode.T) && (isDisguised = false))
-        { 
-            animator.SetTrigger("transform");
-            animator.SetBool("isDisguised", true);
-            isDisguised = true;
-        }
-        if (Input.GetKeyDown(KeyCode.T) && (isDisguised = true))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            animator.SetTrigger("transform");
-            animator.SetBool("isDisguised", false);
-            isDisguised = false;
+            if (isDisguised)
+            {
+                animator.SetTrigger("transform");
+                isDisguised = false;
+                Debug.Log(isDisguised);
+            }
+            else
+            {
+                animator.SetTrigger("transform");
+                isDisguised = true;
+                Debug.Log(isDisguised);
+            }
         }
-        if (Input.GetMouseButton(0)){
+        /*
+        if (Input.GetKeyDown(KeyCode.T) && (isDisguised==false))
+        {
+            Debug.Log("1");
+            animator.SetTrigger("transform");
+//            animator.SetBool("isDisguised", true);
+            isDisguised = true;
+            Debug.Log(isDisguised);
+        }
+        else if (Input.GetKeyDown(KeyCode.T) && (isDisguised == true))
+        {
+            Debug.Log("2");
+            animator.SetTrigger("transform");
+            //animator.SetBool("isDisguised", false);
+            isDisguised = false;
+            Debug.Log(isDisguised);
+        }*/
+
+        if (Input.GetMouseButtonDown(0)){
             animator.SetTrigger("shoot");
         }
+        
     }
 
     private void FixedUpdate()
