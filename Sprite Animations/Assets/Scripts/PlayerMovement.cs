@@ -10,13 +10,27 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     bool isDisguised = false;
-    
+
+
     // Update is called once per frame
     void Update()
     {
         animator.SetBool("isDisguised", isDisguised);
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+        {
+            if (!FindObjectOfType<AudioManager>().isPlaying("Footstep"))
+            {
+                FindObjectOfType<AudioManager>().Play("Footstep");
+            }
+        }
+         
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+        {
+            FindObjectOfType<AudioManager>().Stop("Footstep");
+        }
         if (Input.GetButtonDown("Jump"))
         {
             if (isDisguised)
@@ -40,10 +54,13 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            FindObjectOfType<AudioManager>().Play("Lighting");
+            FindObjectOfType<AudioManager>().Play("Smoking");
             animator.SetBool("isSmoking", true);
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
+            FindObjectOfType<AudioManager>().Stop("Smoking");
             animator.SetBool("isSmoking", false);
         }
         if (Input.GetKeyDown(KeyCode.T))
@@ -82,7 +99,19 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0)){
             animator.SetTrigger("shoot");
         }
-        
+        /*
+        if (horizontalMove != 0)
+        {
+            Debug.Log("here");
+            FindObjectOfType<AudioManager>().Play("Footstep");
+        }
+        if (horizontalMove == 0)
+        {
+            Debug.Log("here stops");
+            FindObjectOfType<AudioManager>().Stop("Footstep");
+        }
+        */
+
     }
 
     private void FixedUpdate()
@@ -95,4 +124,5 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("isJumping", false);
     }
+
 }
