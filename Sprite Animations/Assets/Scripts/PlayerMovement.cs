@@ -68,12 +68,14 @@ public class PlayerMovement : MonoBehaviour
             if (isDisguised)
             {
                 animator.SetTrigger("transform");
+                FindObjectOfType<AudioManager>().Play("Transform");
                 isDisguised = false;
                 Debug.Log(isDisguised);
             }
             else
             {
                 animator.SetTrigger("transform");
+                FindObjectOfType<AudioManager>().Play("Transform");
                 isDisguised = true;
                 Debug.Log(isDisguised);
             }
