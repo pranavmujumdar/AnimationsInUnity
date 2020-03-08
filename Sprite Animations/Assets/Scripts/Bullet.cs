@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
     public Rigidbody2D rb;
+    public GameObject wallImpactEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +17,19 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log(collision);
         Destroy(gameObject);
-        
+        Instantiate(wallImpactEffect, transform.position, transform.rotation);
     }
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void LateUpdate()
+    {
+        GameObject[] impactdust = GameObject.FindGameObjectsWithTag("ImpactDust");
+        foreach (GameObject obj in impactdust)
+        {
+            Destroy(obj, 2f);
+        }
     }
 }
