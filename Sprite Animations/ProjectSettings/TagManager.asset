@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - ImpactDust
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 507118045
+    locked: 0
+  - name: Guard
+    uniqueID: 3439688691
     locked: 0
