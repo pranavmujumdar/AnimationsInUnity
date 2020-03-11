@@ -6,33 +6,33 @@ public class Enemy : MonoBehaviour
 {
     public Animator animator;
     public int health = 100;
-    private float speed = 2f;
+    public float speed = 2f;
+    public float minSpeed = 2f;
     public Transform groundDetection;
     private bool movingRight = true;
     public Transform PlayerDetectionBehind;
     public Transform PlayerDetectionFront;
     public float playerBehindDistance = 1f;
     public float playerFrontDistance = 2f;
-    
+    public float maxSpeed = 4f;
+    private Transform target;
     // public GameObject deathEffect;
     // Start is called before the first frame update
 
 
+    private void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
     public void TakeDamage (int damage)
     {
         health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
     }
     private void Update()
     {
-        if (health <= 0)
-        {
-            animator.SetBool("isDead", true);
-        }
-        
+
+
+        isDead(health);
 
         if(movingRight == true)
         {
@@ -42,15 +42,7 @@ public class Enemy : MonoBehaviour
             RaycastHit2D playerInfoFront = Physics2D.Raycast(PlayerDetectionFront.position, Vector2.right, playerFrontDistance);
             //Debug.DrawRay(PlayerDetectionBehind.position, Vector2.left * playerBehindDistance, Color.red);
             Debug.DrawRay(PlayerDetectionFront.position, Vector2.right * playerFrontDistance, Color.magenta);
-            if (playerInfoFront.collider == true)
-            {
-                //Debug.Log(playerInfo.collider.tag);
-                if(playerInfoFront.collider.tag == "Player")
-                {
-                    Debug.Log("Player");
-                }
-                //Debug.Log("Player in range!");
-            }
+            isPlayerClose(playerInfoFront);
         }
         else
         {
@@ -58,23 +50,16 @@ public class Enemy : MonoBehaviour
 
             RaycastHit2D playerInfoFront = Physics2D.Raycast(PlayerDetectionFront.position, Vector2.left, playerFrontDistance);
             Debug.DrawRay(PlayerDetectionFront.position, Vector2.left * playerFrontDistance, Color.green);
-
-            if (playerInfoFront.collider == true)
-            {
-                if (playerInfoFront.collider.tag == "Player")
-                {
-                    Debug.Log("Player");
-                }
-                //Debug.Log("Player in range!");
-            }
+            isPlayerClose(playerInfoFront);
+            
         }
 
 
 
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 0.5f);
 
-        //Debug.DrawRay(PlayerDetectionLeft.position, Vector2.left * 1f, Color.cyan);
+        Debug.DrawRay(groundDetection.position, Vector2.down * 0.5f, Color.cyan);
 
 
         Invoke("moveEnemy", 2f);
@@ -125,4 +110,36 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject,2f);
     }
     
+
+    public void isPlayerClose(RaycastHit2D playerInfoFront)
+    {
+        if (playerInfoFront.collider == true)
+        {
+            if (playerInfoFront.collider.tag == "Player")
+            {
+                if (speed < maxSpeed)
+                {
+                    speed = 3f;
+                    animator.SetFloat("Speed", 2);
+                    transform.position = Vector2.MoveTowards(transform.position, target.position, (speed+1f) * Time.deltaTime);
+                }
+            }
+            //Debug.Log("Player in range!");
+        }
+        else
+        {
+            if (speed > minSpeed)
+            {
+                speed -= 0.01f;
+            }
+        }
+    }
+    void isDead(int health)
+    {
+        if (health <= 0)
+        {
+            animator.SetBool("isDead", true);
+            Die();
+        }
+    }
 }

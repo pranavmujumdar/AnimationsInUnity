@@ -4,13 +4,25 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-
+    public AudioSource audioSrc;
     public Sound[] sounds;
-
+    private float musicVolume = 1f;
+    public static AudioManager instance;
     
     // Start is called before the first frame update
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+
         foreach(Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -24,8 +36,15 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         Play("Theme");
+        audioSrc = gameObject.GetComponent<AudioSource>();
+        Debug.Log(audioSrc.volume);
     }
-
+    void Update()
+    {
+        audioSrc.volume = musicVolume;
+        //Sound s = Array.Find(sounds, sound => sound.name == "theme");
+        //s.source.volume = musicVolume;
+    }
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -50,5 +69,15 @@ public class AudioManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    /*public void ChangeVolume(float vol)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == "theme");
+        s.source.volume = vol;
+    }*/
+    public void setVolume(float vol)
+    {
+        musicVolume = vol;
     }
 }
