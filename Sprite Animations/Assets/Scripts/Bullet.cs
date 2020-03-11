@@ -25,6 +25,11 @@ public class Bullet : MonoBehaviour
             if(enemy != null)
             {
                 enemy.TakeDamage(damage);
+                if (enemy.isDead())
+                {
+                    Debug.Log("Enemy Dead");
+                    ScoreScript.scoreValue += 10;
+                }
             }
         }
         else

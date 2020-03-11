@@ -12,7 +12,14 @@ public class Weapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            if (PlayerMovement.isDisguised)
+            {
+                return;
+            }
+            else
+            {
+                Shoot();
+            }
         }
 
         void Shoot()
