@@ -145,6 +145,14 @@ public class PlayerMovement : MonoBehaviour
             FindObjectOfType<AudioManager>().Stop("Footstep");
             Debug.Log("Here");  
         }
+        if (collision.gameObject.CompareTag("Teleporter"))
+        {
+            transform.position = new Vector2(43.22f, 15.96f);
+        }
+        if (collision.gameObject.CompareTag("Teleporter2"))
+        {
+            transform.position = new Vector2(10.19f, 3.91f);
+        }
     }
     public void onLanding()
     {
