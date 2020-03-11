@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource audioSrc;
     public Sound[] sounds;
-    private float musicVolume = 1f;
+    private float musicVolume = 0.5f;
     public static AudioManager instance;
     
     // Start is called before the first frame update
