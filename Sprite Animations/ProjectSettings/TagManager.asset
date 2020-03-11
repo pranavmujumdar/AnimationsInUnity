@@ -12,6 +12,8 @@ TagManager:
   - Suit
   - Gun
   - BulletsPick
+  - Pipe
+  - Door
   layers:
   - Default
   - TransparentFX

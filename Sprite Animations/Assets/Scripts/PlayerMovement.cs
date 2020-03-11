@@ -139,6 +139,12 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(isDisguised);
             }
         }
+        if (collision.gameObject.CompareTag("Door"))
+        { 
+            SceneManager.LoadScene("LevelComplete", LoadSceneMode.Single);
+            FindObjectOfType<AudioManager>().Stop("Footstep");
+            Debug.Log("Here");  
+        }
     }
     public void onLanding()
     {
