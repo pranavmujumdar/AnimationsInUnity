@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
     }
-    private void Update()
+    private void FixedUpdate()
     {
 
 

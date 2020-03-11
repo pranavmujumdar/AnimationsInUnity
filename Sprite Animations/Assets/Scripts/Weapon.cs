@@ -14,16 +14,15 @@ public class Weapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (PlayerMovement.isDisguised || hasGun == false)
+            if (PlayerMovement.isDisguised || hasGun == false || bullets <=0)
             {
                 return;
             }
             else
             {
-                if(bullets > 0)
-                {
-                    Shoot();
-                }
+                
+                Shoot();
+                
             }
         }
 
