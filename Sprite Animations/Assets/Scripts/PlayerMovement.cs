@@ -87,13 +87,14 @@ public class PlayerMovement : MonoBehaviour
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             SceneManager.LoadScene("LevelComplete", LoadSceneMode.Single);
         }
-        if (Input.GetMouseButtonDown(0))
+    /*    if (Input.GetMouseButtonDown(0))
         {
             if (!isDisguised)
             {
                 animator.SetTrigger("shoot");
             }
         }
+*/
     }
 
     private void FixedUpdate()
