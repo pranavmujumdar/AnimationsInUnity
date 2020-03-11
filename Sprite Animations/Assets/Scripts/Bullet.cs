@@ -47,5 +47,10 @@ public class Bullet : MonoBehaviour
         {
             Destroy(obj, 1f);
         }
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in bullets)
+        {
+            Destroy(bullet, 1f);
+        }
     }
 }

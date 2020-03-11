@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Weapon : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public bool hasGun = false;
     public int bullets = 0;
+    public TextMeshProUGUI BulletsText;
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +34,7 @@ public class Weapon : MonoBehaviour
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             FindObjectOfType<AudioManager>().Play("Gunshot");
             bullets -= 1;
+            setBulletText();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,12 +42,18 @@ public class Weapon : MonoBehaviour
         if (collision.gameObject.CompareTag("Gun"))
         {
             hasGun = true;
+            setBulletText();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("BulletsPick"))
         {
             bullets = 10;
+            setBulletText();
             Destroy(collision.gameObject);
         }
+    }
+    void setBulletText()
+    {
+        BulletsText.text = "Bullets: " + bullets;
     }
 }
