@@ -206,7 +206,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2514,6 +2514,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: Gunshot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ed5de175c3dc23d45ad104b37887b357, type: 3}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 907f072a3b3a7d94db595c80c0db5dcf, type: 3}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[0].loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7856004431558658172, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
         type: 3}
