@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
-    bool isDisguised = false;
+    public static bool isDisguised = false;
 
 
     // Update is called once per frame
@@ -80,40 +80,20 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(isDisguised);
             }
         }
-        /*
-        if (Input.GetKeyDown(KeyCode.T) && (isDisguised==false))
+        // To got to game over scene
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            Debug.Log("1");
-            animator.SetTrigger("transform");
-//            animator.SetBool("isDisguised", true);
-            isDisguised = true;
-            Debug.Log(isDisguised);
+            ScoreScript.scoreValue = 10;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene("LevelComplete", LoadSceneMode.Single);
         }
-        else if (Input.GetKeyDown(KeyCode.T) && (isDisguised == true))
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("2");
-            animator.SetTrigger("transform");
-            //animator.SetBool("isDisguised", false);
-            isDisguised = false;
-            Debug.Log(isDisguised);
-        }*/
-
-        if (Input.GetMouseButtonDown(0)){
-            animator.SetTrigger("shoot");
+            if (!isDisguised)
+            {
+                animator.SetTrigger("shoot");
+            }
         }
-        /*
-        if (horizontalMove != 0)
-        {
-            Debug.Log("here");
-            FindObjectOfType<AudioManager>().Play("Footstep");
-        }
-        if (horizontalMove == 0)
-        {
-            Debug.Log("here stops");
-            FindObjectOfType<AudioManager>().Stop("Footstep");
-        }
-        */
-
     }
 
     private void FixedUpdate()
@@ -122,6 +102,43 @@ public class PlayerMovement : MonoBehaviour
         jump = false;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+            if (isDisguised)
+            {
+                return;
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().Stop("Footstep");
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+            }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Disguise"))
+        {
+            if (!isDisguised)
+            {
+                animator.SetTrigger("transform");
+                FindObjectOfType<AudioManager>().Play("Transform");
+                isDisguised = true;
+                Debug.Log(isDisguised);
+                
+            }
+        }
+        if (collision.gameObject.CompareTag("Suit"))
+        {
+            if (isDisguised)
+            {
+                animator.SetTrigger("transform");
+                FindObjectOfType<AudioManager>().Play("Transform");
+                isDisguised = false;
+                Debug.Log(isDisguised);
+            }
+        }
+    }
     public void onLanding()
     {
         animator.SetBool("isJumping", false);

@@ -107,9 +107,8 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject,2f);
+        Destroy(gameObject,1f);
     }
-    
 
     public void isPlayerClose(RaycastHit2D playerInfoFront)
     {
@@ -117,11 +116,18 @@ public class Enemy : MonoBehaviour
         {
             if (playerInfoFront.collider.tag == "Player")
             {
-                if (speed < maxSpeed)
+                if (PlayerMovement.isDisguised)
                 {
-                    speed = 3f;
-                    animator.SetFloat("Speed", 2);
-                    transform.position = Vector2.MoveTowards(transform.position, target.position, (speed+1f) * Time.deltaTime);
+                    return;
+                }
+                else
+                {
+                    if (speed < maxSpeed)
+                    {
+                        speed = 3f;
+                        animator.SetFloat("Speed", 2);
+                        transform.position = Vector2.MoveTowards(transform.position, target.position, (speed + 1f) * Time.deltaTime);
+                    }
                 }
             }
             //Debug.Log("Player in range!");
@@ -140,6 +146,17 @@ public class Enemy : MonoBehaviour
         {
             animator.SetBool("isDead", true);
             Die();
+        }
+    }
+    public bool isDead()
+    {
+        if(health <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
