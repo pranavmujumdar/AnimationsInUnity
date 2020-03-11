@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - ImpactDust
   - Enemy
+  - Bullet
+  - Disguise
+  - Suit
   layers:
   - Default
   - TransparentFX
