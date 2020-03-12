@@ -10,9 +10,15 @@ public class Collectibles : MonoBehaviour
     public static int levelCollectibles = 1;
     public Animator animator;
     public static int collected = 0;
+    private bool pickedUp = false;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        collected = 0;
+    }
     void Start()
-    { 
+    {
+        
     }
 
     // Update is called once per frame
@@ -24,18 +30,29 @@ public class Collectibles : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pipe"))
         {
-            FindObjectOfType<AudioManager>().Play("Lighting");
-            FindObjectOfType<AudioManager>().Play("Smoking");
-            animator.SetTrigger("smoke");
-            collected += 1;
-            setCollectedText();
-            Destroy(collision.gameObject);
-            ScoreScript.scoreValue += 10;
+            if (!pickedUp)
+            {
+                pickedUp = true;
+                Debug.Log("pipe");
+                Destroy(collision.gameObject);
+                FindObjectOfType<AudioManager>().Play("Lighting");
+                FindObjectOfType<AudioManager>().Play("Smoking");
+                animator.SetTrigger("smoke");
+                collected += 1;
+                setCollectedText();
+                ScoreScript.scoreValue += 10;
+                Invoke("SetPickedUpFalse", 0.2f);
+            }
+            
         }
         
     }
     void setCollectedText()
     {
         collectiblesText.text = "Collected: " + collected + "/" + levelCollectibles; 
+    }
+    void SetPickedUpFalse()
+    {
+        pickedUp = false;
     }
 }
