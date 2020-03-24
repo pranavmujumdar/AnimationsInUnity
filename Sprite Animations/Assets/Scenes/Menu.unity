@@ -1537,8 +1537,8 @@ Canvas:
   m_GameObject: {fileID: 1107325311}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1774110572}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1608,7 +1608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 23.4}
+  m_AnchoredPosition: {x: 0, y: 23.400002}
   m_SizeDelta: {x: 59.47, y: 19.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114414434
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sweety Pi
+  m_text: Sweety P.i.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7414c1cede52aa14588ad7df58527d24, type: 2}
   m_sharedMaterial: {fileID: 5940152131130606529, guid: 7414c1cede52aa14588ad7df58527d24,
@@ -1874,10 +1874,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1368885602}
-    characterCount: 9
+    characterCount: 11
     spriteCount: 0
     spaceCount: 1
-    wordCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2564,6 +2564,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[0].loop
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856004431558658163, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
+        type: 3}
+      propertyPath: sounds.Array.data[2].loop
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7856004431558658172, guid: f42bc6593e4cdb8438ed5c3af5fc7b9f,
         type: 3}

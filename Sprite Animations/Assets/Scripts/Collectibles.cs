@@ -7,7 +7,7 @@ using TMPro;
 public class Collectibles : MonoBehaviour
 {
     public TextMeshProUGUI collectiblesText;
-    public static int levelCollectibles = 1;
+    public static int levelCollectibles = 3;
     public Animator animator;
     public static int collected = 0;
     private bool pickedUp = false;
